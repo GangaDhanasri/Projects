@@ -3,54 +3,54 @@
 #include <vector>
 #include <functional>
 
-class Task {
+class Taxi {
 public:
-    int id;          // Task ID
-    int priority;    // Priority of the task
+    int number;          // Task number
+    int priority;    // Priority of taxi
 
-    Task(int id, int priority) : id(id), priority(priority) {}
+    Taxi(int number, int priority) : number(number), priority(priority) {}
 
-    // Overload the operator to sort tasks by priority
-    bool operator<(const Task& other) const {
-        return priority < other.priority; // Higher priority tasks are executed first
+    // Overloading operator to sort based on priorities of taxis
+    bool operator<(const Taxi& other) const {
+        return priority < other.priority; // Higher priority taxis will book first
     }
 };
 
-class TaskScheduler {
+class TaxiScheduler {
 private:
-    std::priority_queue<Task> taskQueue; // Priority queue to store tasks
+    std::priority_queue<Taxi> taxiQueue; // Priority queue to store tasks
 
 public:
-    // Method to add a task
-    void addTask(int taskId, int priority) {
-        Task newTask(taskId, priority);
-        taskQueue.push(newTask);
-        std::cout << "Added Task ID: " << taskId << " with Priority: " << priority << std::endl;
+    //Function to add a new taxi in the queue
+    void addTaxi(int number, int priority) {
+        Taxi newTaxi(number, priority);
+        taxiQueue.push(newTaxi);
+        std::cout << "Taxi Number: " << number << " Priority: " << priority << std::endl;
     }
 
-    // Method to execute tasks based on their priority
-    void executeTasks() {
-        std::cout << "Executing Tasks:\n";
-        while (!taskQueue.empty()) {
-            Task currentTask = taskQueue.top(); // Get the task with the highest priority
-            taskQueue.pop(); // Remove it from the queue
-            std::cout << "Executed Task ID: " << currentTask.id << " with Priority: " << currentTask.priority << std::endl;
+    //Function to determine which taxi should be booked first
+    void taxiOrder() {
+        std::cout << "Priority of Taxis:\n";
+        while (!taxiQueue.empty()) {
+            Taxi currentTaxi = taxiQueue.top(); 
+            taxiQueue.pop(); // Remove it from the queue
+            std::cout << "Taxi number: " << currentTaxi.number << " with Priority: " << currentTaxi.priority << std::endl;
         }
     }
 };
 
 int main() {
-    TaskScheduler scheduler;
+    TaxiScheduler scheduler;
 
-    // Adding tasks with varying priorities
-    scheduler.addTask(1, 3); // Task ID: 1, Priority: 3
-    scheduler.addTask(2, 5); // Task ID: 2, Priority: 5
-    scheduler.addTask(3, 1); // Task ID: 3, Priority: 1
-    scheduler.addTask(4, 4); // Task ID: 4, Priority: 4
-    scheduler.addTask(5, 2); // Task ID: 5, Priority: 2
+    // Adding taxis with varying priorities
+    scheduler.addTaxi(1, 3); // Taxi number: 1, Priority: 3
+    scheduler.addTaxi(2, 5); 
+    scheduler.addTaxi(3, 1); 
+    scheduler.addTaxi(4, 4); 
+    scheduler.addTaxi(5, 2); 
 
-    // Execute tasks
-    scheduler.executeTasks();
+    // Taxis order with their priorities
+    scheduler.taxiOrder();
 
     return 0;
 }
