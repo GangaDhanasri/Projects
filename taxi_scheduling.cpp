@@ -5,7 +5,7 @@
 
 class Taxi {
 public:
-    int number;          // Task number
+    int number;          // Taxi number
     int priority;    // Priority of taxi
 
     Taxi(int number, int priority) : number(number), priority(priority) {}
@@ -18,7 +18,7 @@ public:
 
 class TaxiScheduler {
 private:
-    std::priority_queue<Taxi> taxiQueue; // Priority queue to store tasks
+    std::priority_queue<Taxi> taxiQueue; // Priority queue to store taxis
 
 public:
     //Function to add a new taxi in the queue
